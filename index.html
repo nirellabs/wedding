@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Nostro Matrimonio | Ancona</title>
+    <!-- Font Eleganti da Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --white: #ffffff;
+            --pink: #fff0f2;
+            --dark-pink: #f4dcd6;
+            --gold: #e59500;
+            --gold-hover: #e59500;
+            --text-dark: #2d2d2d;
+            --text-muted: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        /* ###### NAVBAR & BURGER MENU ###### */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            box-shadow: 0 1px 30px rgba(100, 20, 20, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .burger-menu {
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+        }
+
+        .burger-bar {
+            width: 100%;
+            height: 2px;
+            background-color: #02040F;
+            transition: all 0.3s ease;
+        }
+
+        /* Animazione Burger Aperto */
+        .burger-menu.open .bar1 {
+            transform: translateY(10px) rotate(45deg);
+        }
+        .burger-menu.open .bar2 {
+            opacity: 0;
+        }
+        .burger-menu.open .bar3 {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 999;
+        }
+
+        .nav-overlay.open {
+            right: 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .nav-links li {
+            margin: 25px 0;
+        }
+
+        .nav-links a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 3px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* ###### SUB MENU HEADER ###### */
+
+
+        /* ###### HERO SECTION ###### */
+        .hero {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--white), var(--white));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            letter-spacing: 4px;
+        }
+
+        .hero .date {
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .hero-img-container {
+            width: 90%;
+            max-width: 500px;
+            max-height: 500px;
+
+            border-radius: 50px 50px 50px 50px;
+            
+            background-clip: content-box;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(100, 20, 20,0.1);
+            transition: all ease-out .6s;
+        }
+        .hero-img-container:hover {
+            transform: scale(1.05);
+            transition: all ease-in .2s;       
+        }
+
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50px 50px 50px 50px;
+        }
+
+        .btn-rsvp {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--gold);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-rsvp:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* ###### SEZIONI GENERICHE ###### */
+        section {
+            padding: 100px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--pink);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 1px;
+            background-color: var(--gold);
+            margin: 15px auto 0 auto;
+        }
+
+        /* ###### PROGRAMMA (TIMELINE) ###### */
+        .timeline {
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .timeline-time {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        /* ###### DRESS CODE ###### */
+        .dress-code-box {
+            background-color: var(--pink);
+            padding: 40px;
+            text-align: center;
+            border: 1px dashed var(--gold);
+        }
+
+        .dress-code-style {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .dress-code-text {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ###### ALLOGGI & HOW TO REACH ###### */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .card {
+            background-color: var(--white);
+            border: 1px solid var(--pink);
+            padding: 30px;
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(244, 220, 214, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .card-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 2px;
+            transition: color 0.3s;
+        }
+
+        .card-link:hover {
+            color: var(--gold);
+        }
+
+        /* ###### FOOTER ###### */
+        footer {
+            background-color: var(--pink);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .title-hero {
+            
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <a href="#" class="logo">Giulia & Roberto</a>
+        <div class="burger-menu" onclick="toggleMenu()">
+            <div class="burger-bar bar1"></div>
+            <div class="burger-bar bar2"></div>
+            <div class="burger-bar bar3"></div>
+        </div>
+    </header>
+
+    <!--
+    <div class="sub-menu">
+        <a href="#" class="sub-menu-link">Programma</a>
+        <a href="#" class="sub-menu-link">Dress Code</a>
+        <a href="#" class="sub-menu-link">Consigli per gli Alloggi</a>
+        <a href="#" class="sub-menu-link">How to reach Fabriano</a>
+    </div>
+    -->
+
+    <!-- BURGER MENU OVERLAY -->
+    <nav class="nav-overlay" id="navOverlay">
+        <ul class="nav-links">
+            <li><a href="#programma" onclick="toggleMenu()">PROGRAMMA</a></li>
+            <li><a href="#dresscode" onclick="toggleMenu()">DRESS CODE</a></li>
+            <li><a href="#alloggi" onclick="toggleMenu()">CONSIGLI PER GLI ALLOGGI</a></li>
+            <li><a href="#reach" onclick="toggleMenu()">HOW TO REACH FABRIANO</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <main class="hero">
+        <div class="hero-img-container">
+            <img src="GiuliaRoberto.jpeg" alt="Giulia & Roberto">
+        </div>
+        <div class="title-hero">Giulia & Roberto</div><p>Sabato 24 Luglio 2027<br>Fabrano (AN), Italia</p>
+
+</main>
+
+<script>
+ function toggleMenu() {
+const burger = document.querySelector('.burger-menu');
+const overlay = document.getElementById('navOverlay');
+burger.classList.toggle('open');
+overlay.classList.toggle('open');
+}
+</script>
+       
+</body>
+</html>
