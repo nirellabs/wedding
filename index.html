@@ -165,29 +165,6 @@
             text-transform: uppercase;
         }
 
-        .hero-img-container {
-            width: 90%;
-            max-width: 500px;
-            max-height: 750px;
-
-            border-radius: 50px 50px 50px 50px;
-            
-            background-clip: content-box;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 20px rgba(100, 20, 20,0.1);
-            transition: all ease-out .6s;
-        }
-        .hero-img-container:hover {
-            transform: scale(1.05);
-            transition: all ease-in .2s;       
-        }
-
-        .hero-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50px 50px 50px 50px;
-        }
 
         .btn-rsvp {
             display: inline-block;
@@ -357,16 +334,98 @@
             letter-spacing: 1px;
         }
 
-        .title-hero {
-            display: inline-block;
-            color: var(--text-dark);
-            text-decoration: none;
-            letter-spacing: 2px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-style: italic;
-        }
 
+
+        /* Contenitore generale per impilare immagine e pulsante */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px; /* Spazio tra immagine e pulsante */
+  padding: 20px;
+}
+
+/* Contenitore immagine */
+.image-container {
+    margin-top: 90px;
+  width: 100%;
+  max-width: 500px; /* Puoi modificare la larghezza massima */
+  border-radius: 50px;
+  overflow: hidden; /* Fondamentale per tagliare gli angoli dell'immagine a 50px */
+  background-color: #ffffff;
+  
+  /* Doppia ombra: la prima leggera su tutto il perimetro, la seconda piÃ¹ profonda verso il basso (25px) */
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.05), 
+    0 25px 40px -10px rgba(0, 0, 0, 0.22);
+}
+
+.image-container img {
+  display: block; /* Rimuove lo spazio bianco sotto l'immagine */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Pulsante moderno */
+.modern-btn {
+  display: inline-block;
+  padding: 16px 38px;
+  background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border-radius: 9999px; /* Forma a pillola moderna */
+  box-shadow: 0 10px 20px -5px rgba(202, 138, 4, 0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+/* Effetto al passaggio del mouse */
+.modern-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px -5px rgba(202, 138, 4, 0.55);
+  background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+}
+
+/* Effetto al clic */
+.modern-btn:active {
+  transform: translateY(0);
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.couple-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 3.4rem); /* Si adatta automaticamente a mobile e desktop */
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #111827;
+  line-height: 1.1;
+}
+
+.event-date {
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #4b5563;
+  margin-top: 6px;
+}
+
+.event-location {
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: #6b7280;
+}
     </style>
 </head>
 <body>
@@ -400,14 +459,24 @@
         </ul>
     </nav>
 
-    <!-- HERO SECTION -->
-    <main class="hero">
-        <div class="hero-img-container">
-            <img src='GiuliaRoberto.jpeg' alt="Giulia & Roberto">
-        </div>
-        <div class="title-hero">Giulia & Roberto</div><p>Sabato 24 Luglio 2027<br>Fabrano (AN), Italia</p>
+    <div class="wrapper">
+    <!-- Contenitore dell'immagine -->
+    <div class="image-container">
+      <img src="GiuliaRobertoMod.jpeg" alt="Giulia & Roberto">
+    </div>
 
-</main>
+    <div class="event-details">
+      <h1 class="couple-names">Giulia &amp; Roberto</h1>
+      <p class="event-date">Sabato 24 Luglio 2027</p>
+      <p class="event-location">Fabriano (AN) Italia</p>
+    </div>
+
+    <!-- Pulsante con link -->
+    <a href="https://forms.gle/4Ch5yuqmGwitqdWW7" class="modern-btn">Confirm</a>
+  </div>
+
+   
+    
 
 <script>
  function toggleMenu() {
