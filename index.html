@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="logo.ico">
-    <title>Il Matrimonio di Giulia & Roberto | Fabriano</title>
-    <!-- Font Eleganti da Google Fonts -->
     <link rel="preconnect" href="https://googleapis.com" crossorigin>
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Giulia & Roberto | Matrimonio a Fabriano</title> 
     <style>
         :root {
             --white: #ffffff;
@@ -20,14 +18,12 @@
             --text-dark: #2d2d2d;
             --text-muted: #666666;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--white);
@@ -35,18 +31,20 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
         h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Cormorant+Garamond', serif;
             font-weight: 500;
         }
         .logo {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Cormorant+Garamond', serif;
             font-weight: 500;
             font-style: italic;
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 2px;
         }
-
-        /* ###### NAVBAR & BURGER MENU ###### */
+        /* NAVBAR & BURGER MENU */
         header {
             position: fixed;
             top: 0;
@@ -62,14 +60,6 @@
             /* box-shadow: 0 1px 30px rgba(100, 20, 20, 0.1); */
             box-shadow: 0 10px 20px rgba(82, 0, 158, 0.075);
         }
-
-        .logo {
-            font-size: 1.8rem;
-            color: var(--text-dark);
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
-
         .burger-menu {
             cursor: pointer;
             z-index: 1001;
@@ -79,15 +69,13 @@
             width: 30px;
             height: 22px;
         }
-
         .burger-bar {
             width: 100%;
             height: 2px;
             background-color: #02040F;
             transition: all 0.3s ease;
         }
-
-        /* Animazione Burger Aperto */
+        /* ANIMAZIONE BURGER APERTO */
         .burger-menu.open .bar1 {
             transform: translateY(10px) rotate(45deg);
         }
@@ -97,7 +85,6 @@
         .burger-menu.open .bar3 {
             transform: translateY(-10px) rotate(-45deg);
         }
-
         .nav-overlay {
             position: fixed;
             top: 0;
@@ -112,37 +99,28 @@
             transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
             z-index: 999;
         }
-
         .nav-overlay.open {
             right: 0;
         }
-
         .nav-links {
             list-style: none;
             text-align: center;
         }
-
         .nav-links li {
             margin: 25px 0;
         }
-
         .nav-links a {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Cormorant+Garamond', serif;
             font-size: 2rem;
             color: var(--text-dark);
             text-decoration: none;
             letter-spacing: 3px;
             transition: color 0.3s;
         }
-
         .nav-links a:hover {
             color: var(--gold);
         }
-
-        /* ###### SUB MENU HEADER ###### */
-
-
-        /* ###### HERO SECTION ###### */
+        /* SEZIONE HEADER */
         .hero {
             padding-top: 120px;
             padding-bottom: 80px;
@@ -166,8 +144,7 @@
             margin-bottom: 40px;
             text-transform: uppercase;
         }
-
-
+        
         .btn-rsvp {
             display: inline-block;
             padding: 15px 40px;
@@ -182,25 +159,21 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
-
         .btn-rsvp:hover {
             background-color: var(--gold-hover);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
         }
-
-        /* ###### SEZIONI GENERICHE ###### */
+        /* SEZIONI BURGER */
         section {
             padding: 100px 20px;
             max-width: 900px;
             margin: 0 auto;
             border-bottom: 1px solid var(--pink);
         }
-
         section:last-of-type {
             border-bottom: none;
         }
-
         .section-title {
             text-align: center;
             font-size: 2.5rem;
@@ -208,7 +181,6 @@
             letter-spacing: 3px;
             position: relative;
         }
-
         .section-title::after {
             content: '';
             display: block;
@@ -230,7 +202,7 @@
         }
 
         .timeline-time {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Cormorant+Garamond', serif;
             font-size: 1.8rem;
             color: var(--gold);
             display: block;
@@ -259,7 +231,7 @@
         }
 
         .dress-code-style {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Cormorant+Garamond', serif;
             font-size: 2rem;
             margin-bottom: 15px;
             font-style: italic;
@@ -277,7 +249,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 30px;
         }
-
         @media (max-width: 768px) {
             .grid-container {
                 grid-template-columns: 1fr;
@@ -286,30 +257,25 @@
                 font-size: 2.5rem;
             }
         }
-
         .card {
             background-color: var(--white);
             border: 1px solid var(--pink);
             padding: 30px;
             transition: box-shadow 0.3s;
         }
-
         .card:hover {
             box-shadow: 0 10px 25px rgba(244, 220, 214, 0.4);
         }
-
         .card h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
             color: var(--gold);
         }
-
         .card p {
             color: var(--text-muted);
             font-size: 0.95rem;
             margin-bottom: 15px;
         }
-
         .card-link {
             color: var(--text-dark);
             text-decoration: none;
@@ -326,7 +292,7 @@
             color: var(--gold);
         }
 
-        /* ###### FOOTER ###### */
+        /* FOOTER */
         footer {
             background-color: var(--pink);
             padding: 40px 20px;
@@ -337,8 +303,7 @@
         }
 
 
-
-        /* Contenitore generale per impilare immagine e pulsante */
+/* CONTENITORE IMG */
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -347,21 +312,18 @@
   padding: 20px;
 }
 
-/* Contenitore immagine */
+/* CONTAINER IMMAGINE */
 .image-container {
     margin-top: 90px;
   width: 100%;
-  max-width: 500px; /* Puoi modificare la larghezza massima */
+  max-width: 500px;
   border-radius: 50px;
   overflow: hidden; /* Fondamentale per tagliare gli angoli dell'immagine a 50px */
   background-color: #ffffff;
-  
-  /* Doppia ombra: la prima leggera su tutto il perimetro, la seconda piÃ¹ profonda verso il basso (25px) */
   box-shadow: 
     0 4px 15px rgba(82, 0, 158, 0.075), 
     0 25px 40px -10px rgba(82, 0, 158, 0.275);
 }
-
 .image-container img {
   display: block; /* Rimuove lo spazio bianco sotto l'immagine */
   width: 100%;
@@ -369,8 +331,7 @@
   object-fit: cover;
 }
 
-/* Pulsante moderno */
-
+/* BTN INVITO */
 .btn-cont {
     margin-top: 30px;
     margin-bottom: 20px;
@@ -388,28 +349,22 @@
   box-shadow: 0 10px 20px -5px rgba(82, 0, 158, 0.4);
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
-
-/* Effetto al passaggio del mouse */
 .modern-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 25px -5px rgba(82, 0, 158, 0.4);
   background: linear-gradient(135deg, #af4dff 0%, #6f00ff 100%);
 }
-
-/* Effetto al clic */
 .modern-btn:active {
   transform: translateY(0);
 }
-
 .event-details {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
 }
-
 .couple-names {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant+Garamond', serif;
   font-size: clamp(2.4rem, 5vw, 3.4rem); /* Si adatta automaticamente a mobile e desktop */
   font-style: italic;
   font-weight: 400;
@@ -417,9 +372,8 @@
   color: #111827;
   line-height: 1.1;
 }
-
 .event-date {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant+Garamond', serif;
   font-style: italic;
   font-weight: 400;
   font-size: 1.2rem;
@@ -428,16 +382,14 @@
   color: #4b5563;
   margin-top: 6px;
 }
-
 .event-location {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant+Garamond', serif;
   font-style: italic;
   font-weight: 400;
   font-size: 1.1rem;
   letter-spacing: 1.5px;
   color: #6b7280;
 }
-
 .info-card {
   width: 100%;
   max-width: 500px;
@@ -452,7 +404,6 @@
   align-items: center;
   gap: 14px;
 }
-
 .card-title {
   font-size: clamp(1.8rem, 5vw, 2.8rem); /* Si adatta automaticamente a mobile e desktop */
   font-style: italic;
@@ -462,37 +413,30 @@
   margin-bottom: 4px;
   text-align: center;
 }
-
 .card-text {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant+Garamond', serif;
     font-style: italic;
   font-weight: 400;
   font-size: clamp(1.15rem, 3.8vw, 1.25rem);
   line-height: 1.7;
   color: #4b5563;
 }
-
 .card-text strong {
   color: #1f2937;
   font-weight: 600;
 }
-
-/* Dettagli interni della card Programma */
+/* CARD TESTO PROGRAMMA */
 .program-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 6px;
 }
-
 .card-divider {
   width: 60px;
   border: none;
   border-top: 1px solid #e5e7eb;
   margin: 8px 0;
 }
-
-
 .inline-link {
   color: #5f00db;
   font-weight: 600;
@@ -501,12 +445,11 @@
   text-underline-offset: 3px;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
-
 .inline-link:hover {
   color: #8a31ff;
   text-decoration-color: #8a31ff;
 }
-/* Pulsante traduzione fisso sul lato destro */
+/* LANG BTN */
 .lang-btn {
   position: fixed;
   right: 24px;
@@ -526,30 +469,26 @@
   cursor: pointer;
   box-shadow: 0 10px 20px -5px rgba(82, 0, 158, 0.4);
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-opacity: 0;
+    opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
-
-/* Stato visibile quando si raggiunge il paragrafo di invito */
+/* LANG BTN VISIBILE */
 .lang-btn.visible {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
-
 .lang-btn:hover {
   transform: translateY(calc(-50% - 3px));
   box-shadow: 0 15px 25px -5px rgba(82, 0, 158, 0.55);
   background: linear-gradient(135deg, #af4dff 0%, #6f00ff 100%);
 }
-
 .lang-btn:active {
   transform: translateY(-50%);
 }
-
-/* Adattamento su schermi molto piccoli */
+/* RESPONSIVE */
 @media (max-width: 480px) {
   .lang-btn {
     right: 14px;
@@ -558,7 +497,6 @@ opacity: 0;
     font-size: 12px;
   }
 }
-
 .welcome-quote {
   max-width: 500px;
   margin-top: 24px;
@@ -568,15 +506,13 @@ opacity: 0;
   align-items: center;
   gap: 18px;
 }
-
 .quote-line {
   width: 60px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
-
 .welcome-text {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant+Garamond', serif;
   font-style: italic;
   font-weight: 400;
   /* Su smartphone scende a 1.35rem (circa 21px), su desktop arriva a 1.65rem */
@@ -589,7 +525,6 @@ opacity: 0;
     </style>
 </head>
 <body>
-
     <button id="lang-toggle" class="lang-btn" aria-label="Cambia lingua">EN</button>
     <!-- NAVBAR -->
     <header>
@@ -600,17 +535,7 @@ opacity: 0;
             <div class="burger-bar bar3"></div>
         </div>
     </header>
-
-    <!--
-    <div class="sub-menu">
-        <a href="#" class="sub-menu-link">Programma</a>
-        <a href="#" class="sub-menu-link">Dress Code</a>
-        <a href="#" class="sub-menu-link">Consigli per gli Alloggi</a>
-        <a href="#" class="sub-menu-link">How to reach Fabriano</a>
-    </div>
-    -->
-
-    <!-- BURGER MENU OVERLAY -->
+    <!-- BURGER MENU -->
     <nav class="nav-overlay" id="navOverlay">
         <ul class="nav-links">
             <li><a href="#programma" onclick="toggleMenu()">PROGRAMMA</a></li>
@@ -619,96 +544,82 @@ opacity: 0;
             <li><a href="#reach" onclick="toggleMenu()">HOW TO REACH FABRIANO</a></li>
         </ul>
     </nav>
-
     <div class="wrapper">
-        <!-- Contenitore dell'immagine -->
         <div class="image-container">
             <img src="GiuliaRobertoMod.jpeg" alt="Giulia & Roberto">
+        </div>
     </div>
-
     <div class="event-details">
         <h1 class="couple-names">Giulia &amp; Roberto</h1>
         <p class="event-date">Sabato 24 Luglio 2027</p>
         <p class="event-location">Fabriano (AN) Italia</p>
-
-        
-    <!-- Pulsante con link -->
-    <div class="btn-cont">
-    <a href="https://forms.gle/4Ch5yuqmGwitqdWW7" class="modern-btn">Rispondi all'invito</a></div>
-
-      <div class="welcome-quote">
-            <!-- <span class="quote-line"></span> -->
-            <p class="welcome-text"
-               data-it="Cari familiari e amici, è con gioia che vi invitiamo a festeggiare con noi il nostro Amore.<br>Non vediamo l'ora di avervi tutti con noi in un momento così speciale della nostra vita." 
-               data-en="Dear family and friends, it is with great joy that we invite you to celebrate our Love with us.<br>We can't wait to have you all by our side during such a special moment in our lives.">
-              Cari familiari e amici, è con gioia che vi invitiamo a festeggiare con noi il nostro Amore.<br>Non vediamo l'ora di avervi tutti con noi in un momento così speciale della nostra vita.
-            </p>
+        <div class="btn-cont">
+            <a href="https://forms.gle/4Ch5yuqmGwitqdWW7" class="modern-btn">Rispondi all'invito</a>
         </div>
 
+        <div class="welcome-quote">
+            <p class="welcome-text"
+                data-it="Cari familiari e amici, è con gioia che vi invitiamo a festeggiare con noi il nostro Amore.<br>Non vediamo l'ora di avervi tutti con noi in un momento così speciale della nostra vita." 
+                data-en="Dear family and friends, it is with great joy that we invite you to celebrate our Love with us.<br>We can't wait to have you all by our side during such a special moment in our lives.">
+                Cari familiari e amici, è con gioia che vi invitiamo a festeggiare con noi il nostro Amore.<br>Non vediamo l'ora di avervi tutti con noi in un momento così speciale della nostra vita.
+            </p>
+        </div>
     </div>
 
-     
-
-    <!-- CARD 2: Programma -->
+    <!-- CARD 1: PROGRAMMA -->
     <div class="info-card" id="programma">
-      <h2 class="card-title" data-it="Programma" data-en="Schedule">Programma</h2>
-      
-      <div class="program-item">
-        <p class="card-text" data-it="<strong>Celebrazione presso:</strong> prossimamente..." data-en="<strong>Ceremony at:</strong> prossimamente..."><strong>Celebrazione presso:</strong> prossimamente...</p>
-        <p class="card-text" data-it="<strong>Ore:</strong> soon..." data-en="<strong>Time:</strong> soon..."><strong>Ore:</strong> prossimamente...</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d362.6498579507986!2d12.865384228028592!3d43.35195071091097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dcbec20d5c8ad%3A0x80c077995e5fcf47!2sTorrececchina!5e0!3m2!1sen!2sit!4v1795480263783!5m2!1sen!2sit" width="300" height="200" style="border:0;border-radius: 30px 30px 30px 30px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      </div>
-
-      <div class="program-item">
-        <p class="card-text" data-it="<strong>Festeggiamenti presso:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7" data-en="<strong>Reception at:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7"><strong>Festeggiamenti presso:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d362.6498579507986!2d12.865384228028592!3d43.35195071091097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dcbec20d5c8ad%3A0x80c077995e5fcf47!2sTorrececchina!5e0!3m2!1sen!2sit!4v1795480263783!5m2!1sen!2sit" width="300" height="200" style="border:0;border-radius: 30px 30px 30px 30px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      </div>
+        <h2 class="card-title" data-it="Programma" data-en="Schedule">Programma</h2>
+        <div class="program-item">
+            <p class="card-text" data-it="<strong>Celebrazione presso:</strong> prossimamente..." data-en="<strong>Ceremony at:</strong> prossimamente..."><strong>Celebrazione presso:</strong> prossimamente...</p>
+            <p class="card-text" data-it="<strong>Ore:</strong> soon..." data-en="<strong>Time:</strong> soon..."><strong>Ore:</strong> prossimamente...</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d362.6498579507986!2d12.865384228028592!3d43.35195071091097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dcbec20d5c8ad%3A0x80c077995e5fcf47!2sTorrececchina!5e0!3m2!1sen!2sit!4v1795480263783!5m2!1sen!2sit" width="300" height="200" style="border:0;border-radius: 30px 30px 30px 30px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <div class="program-item">
+            <p class="card-text" data-it="<strong>Festeggiamenti presso:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7" data-en="<strong>Celebrations at:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7"><strong>Festeggiamenti presso:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d362.6498579507986!2d12.865384228028592!3d43.35195071091097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dcbec20d5c8ad%3A0x80c077995e5fcf47!2sTorrececchina!5e0!3m2!1sen!2sit!4v1795480263783!5m2!1sen!2sit" width="300" height="200" style="border:0;border-radius: 30px 30px 30px 30px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
     </div>
 
-    <!-- CARD 3: Dress Code -->
+    <!-- CARD 2: DRESS CODE -->
     <div class="info-card" id="dresscode">
-      <h2 class="card-title">Dress Code</h2>
-      <p class="card-text" 
-         data-it="Al di là del caldo torrenziale previsto, vi preghiamo di venire vestiti come più vi aggradi. Siate voi stessi e venite a divertirvi con noi!" 
-         data-en="Regardless of the expected summer heat, please wear whatever makes you feel most comfortable. Just be yourself and come have fun with us!">
-        Al di là del caldo torrenziale previsto, vi preghiamo di venire vestiti come più vi aggradi. Siate voi stessi e venite a divertirvi con noi!
-      </p>
+        <h2 class="card-title">Dress Code</h2>
+        <p class="card-text" 
+            data-it="Al di là del caldo torrenziale previsto, vi preghiamo di venire vestiti come più vi aggradi. Siate voi stessi e venite a divertirvi con noi!" 
+            data-en="Regardless of the expected summer heat, please wear whatever makes you feel most comfortable. Just be yourself and come have fun with us!">
+            Al di là del caldo torrenziale previsto, vi preghiamo di venire vestiti come più vi aggradi. Siate voi stessi e venite a divertirvi con noi!
+        </p>
     </div>
 
-     <!-- CARD 4: Alloggi -->
+     <!-- CARD 3: ALLOGGI -->
     <div class="info-card" id="alloggi">
-      <h2 class="card-title" data-it="Alloggi" data-en="Accomodation">Alloggi</h2>
-      <p class="card-text" 
-         data-it="Prossimamente..." 
-         data-en="Soon...">
-        Prossimamente...
-      </p>
+        <h2 class="card-title" data-it="Alloggi" data-en="Accomodation">Alloggi</h2>
+        <p class="card-text"
+            data-it="Prossimamente..."
+            data-en="Soon...">
+            Prossimamente...
+        </p>
     </div>
 
-    <!-- CARD 5: How to reach Fabriano -->
+    <!-- CARD 4: COME RAGGIUNGERE FABRIANO -->
     <div class="info-card" id="reach">
-      <h2 class="card-title" data-it="Come raggiungere Fabriano" data-en="How to Reach Fabriano">Come raggiungere Fabriano</h2>
-      <p class="card-text" 
-         data-it="L'aeroporto internazionale più vicino è <strong>Roma Fiumicino</strong>. Da qui è consigliabile noleggiare un'auto, poiché Fabriano non dispone di mezzi pubblici per spostarsi." 
-         data-en="The closest international airport is <strong>Roma Fiumicino</strong>. From here, you can hire a car, which is recommended as Fabriano doesn't offer public transport to move around.">
-        L'aeroporto internazionale più vicino è <strong>Roma Fiumicino</strong>. Da qui è consigliabile noleggiare un'auto, poiché Fabriano non dispone di mezzi pubblici per spostarsi.
-      </p>
-      <p class="card-text" 
-         data-it="In alternativa, potete prendere il treno da <strong>Roma Termini</strong> a Fabriano (treno diretto, circa 2,5/3 ore) e verremo a prendervi noi (<a href='https://www.trenitalia.com' target='_blank' class='inline-link'>sito Trenitalia</a>)." 
-         data-en="Otherwise, you can take the train from <strong>Roma Termini</strong> to Fabriano (direct train, around 2.5/3 hours) and we'll pick you up (<a href='https://www.trenitalia.com' target='_blank' class='inline-link'>Trenitalia website</a>).">
-        In alternativa, potete prendere il treno da <strong>Roma Termini</strong> a Fabriano (treno diretto, circa 2,5/3 ore) e verremo a prendervi noi (<a href="https://www.trenitalia.com" target="_blank" class="inline-link">sito Trenitalia</a>).
-      </p>
-      <p class="card-text" 
-         data-it="Una volta agli arrivi, prendete il treno <strong>Leonardo Express</strong> dall'aeroporto fino a Roma Termini. Da lì seguite le indicazioni per il vostro treno." 
-         data-en="Once at the arrivals, take the <strong>Leonardo Express</strong> train from the airport and stop at Roma Termini. From here, follow the directions to your train.">
-        Una volta agli arrivi, prendete il treno <strong>Leonardo Express</strong> dall'aeroporto fino a Roma Termini. Da lì seguite le indicazioni per il vostro treno.
-      </p>
+        <h2 class="card-title" data-it="Come raggiungere Fabriano" data-en="How to Reach Fabriano">Come raggiungere Fabriano</h2>
+        <p class="card-text" 
+            data-it="L'aeroporto internazionale più vicino è <strong>Roma Fiumicino</strong>. Da qui è consigliabile noleggiare un'auto, poiché Fabriano non dispone di mezzi pubblici per spostarsi." 
+            data-en="The closest international airport is <strong>Roma Fiumicino</strong>. From here, you can hire a car, which is recommended as Fabriano doesn't offer public transport to move around.">
+            L'aeroporto internazionale più vicino è <strong>Roma Fiumicino</strong>. Da qui è consigliabile noleggiare un'auto, poiché Fabriano non dispone di mezzi pubblici per spostarsi.
+        </p>
+        <p class="card-text" 
+            data-it="In alternativa, potete prendere il treno da <strong>Roma Termini</strong> a Fabriano (treno diretto, circa 2,5/3 ore) e verremo a prendervi noi (<a href='https://www.trenitalia.com' target='_blank' class='inline-link'>sito Trenitalia</a>)." 
+            data-en="Otherwise, you can take the train from <strong>Roma Termini</strong> to Fabriano (direct train, around 2.5/3 hours) and we'll pick you up (<a href='https://www.trenitalia.com' target='_blank' class='inline-link'>Trenitalia website</a>).">
+            In alternativa, potete prendere il treno da <strong>Roma Termini</strong> a Fabriano (treno diretto, circa 2,5/3 ore) e verremo a prendervi noi (<a href="https://www.trenitalia.com" target="_blank" class="inline-link">sito Trenitalia</a>).
+        </p>
+        <p class="card-text" 
+            data-it="Una volta agli arrivi, prendete il treno <strong>Leonardo Express</strong> dall'aeroporto fino a Roma Termini. Da lì seguite le indicazioni per il vostro treno." 
+            data-en="Once at the arrivals, take the <strong>Leonardo Express</strong> train from the airport and stop at Roma Termini. From here, follow the directions to your train.">
+            Una volta agli arrivi, prendete il treno <strong>Leonardo Express</strong> dall'aeroporto fino a Roma Termini. Da lì seguite le indicazioni per il vostro treno.
+        </p>
     </div>
-
-  
 <script>
- 
-
 const langToggle = document.getElementById('lang-toggle');
   // Seleziona il blocco dell'invito (funziona sia se hai usato .welcome-quote sia con il vecchio .card-text)
   const welcomeSection = document.querySelector('.welcome-quote') || document.querySelector('.event-details .card-text');
