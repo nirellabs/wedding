@@ -1,667 +1,579 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="logo.ico">
-    <link rel="preconnect" href="https://googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <title>Giulia & Roberto | Matrimonio a Fabriano</title> 
-    <style>
-        :root {
-            --white: #ffffff;
-            --pink: #fff0f2;
-            --dark-pink: #f4dcd6;
-            --gold: #e59500;
-            --gold-hover: #e59500;
-            --text-dark: #2d2d2d;
-            --text-muted: #666666;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--white);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        h1, h2, h3 {
-            font-family: 'Cormorant', serif;
-            font-weight: 500;
-        }
-        .logo {
-            font-family: 'Cormorant', serif;
-            font-weight: 500;
-            font-style: italic;
-            font-size: 1.8rem;
-            color: var(--text-dark);
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
-        /* NAVBAR & BURGER MENU */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            /* box-shadow: 0 1px 30px rgba(100, 20, 20, 0.1); */
-            box-shadow: 0 10px 20px rgba(82, 0, 158, 0.075);
-        }
-        .burger-menu {
-            cursor: pointer;
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 22px;
-        }
-        .burger-bar {
-            width: 100%;
-            height: 2px;
-            background-color: #02040F;
-            transition: all 0.3s ease;
-        }
-        /* ANIMAZIONE BURGER APERTO */
-        .burger-menu.open .bar1 {
-            transform: translateY(10px) rotate(45deg);
-        }
-        .burger-menu.open .bar2 {
-            opacity: 0;
-        }
-        .burger-menu.open .bar3 {
-            transform: translateY(-10px) rotate(-45deg);
-        }
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(255, 255, 255, 0.98);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-            z-index: 999;
-        }
-        .nav-overlay.open {
-            right: 0;
-        }
-        .nav-links {
-            list-style: none;
-            text-align: center;
-        }
-        .nav-links li {
-            margin: 25px 0;
-        }
-        .nav-links a {
-            font-family: 'Cormorant', serif;
-            font-size: 2rem;
-            color: var(--text-dark);
-            text-decoration: none;
-            letter-spacing: 3px;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-        /* SEZIONE HEADER */
-        .hero {
-            padding-top: 120px;
-            padding-bottom: 80px;
-            text-align: center;
-            background: linear-gradient(to bottom, var(--white), var(--white));
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            letter-spacing: 4px;
-        }
-
-        .hero .date {
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            text-transform: uppercase;
-        }
-        
-        .btn-rsvp {
-            display: inline-block;
-            padding: 15px 40px;
-            background-color: var(--gold);
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 500;
-            border-radius: 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-        }
-        .btn-rsvp:hover {
-            background-color: var(--gold-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
-        }
-        /* SEZIONI BURGER */
-        section {
-            padding: 100px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-            border-bottom: 1px solid var(--pink);
-        }
-        section:last-of-type {
-            border-bottom: none;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            letter-spacing: 3px;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 1px;
-            background-color: var(--gold);
-            margin: 15px auto 0 auto;
-        }
-
-        /* ###### PROGRAMMA (TIMELINE) ###### */
-        .timeline {
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .timeline-item {
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .timeline-time {
-            font-family: 'Cormorant', serif;
-            font-size: 1.8rem;
-            color: var(--gold);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .timeline-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .timeline-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 5px;
-        }
-
-        /* ###### DRESS CODE ###### */
-        .dress-code-box {
-            background-color: var(--pink);
-            padding: 40px;
-            text-align: center;
-            border: 1px dashed var(--gold);
-        }
-
-        .dress-code-style {
-            font-family: 'Cormorant', serif;
-            font-size: 2rem;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .dress-code-text {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* ###### ALLOGGI & HOW TO REACH ###### */
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        @media (max-width: 768px) {
-            .grid-container {
-                grid-template-columns: 1fr;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="logo.ico">
+        <link rel="preconnect" href="https://googleapis.com" crossorigin>
+        <link rel="preconnect" href="https://gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+        <title>Giulia & Roberto | Matrimonio a Fabriano</title> 
+        <style>
+            :root {
+                --white: #ffffff;
+                --pink: #fff0f2;
+                --dark-pink: #f4dcd6;
+                --gold: #e59500;
+                --gold-hover: #e59500;
+                --text-dark: #2d2d2d;
+                --text-muted: #666666;
             }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                scroll-behavior: smooth;
+            }
+            body {
+                font-family: 'Montserrat', sans-serif;
+                background-color: var(--white);
+                color: var(--text-dark);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+            h1, h2, h3 {
+                font-family: 'Cormorant', serif;
+                font-weight: 500;
+            }
+            .logo {
+                font-family: 'Cormorant', serif;
+                font-weight: 500;
+                font-style: italic;
+                font-size: 1.8rem;
+                color: var(--text-dark);
+                text-decoration: none;
+                letter-spacing: 2px;
+            }
+            /* NAVBAR & BURGER MENU */
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 20px 40px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(5px);
+                z-index: 1000;
+                /* box-shadow: 0 1px 30px rgba(100, 20, 20, 0.1); */
+                box-shadow: 0 10px 20px rgba(82, 0, 158, 0.075);
+            }
+            .burger-menu {
+                cursor: pointer;
+                z-index: 1001;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 30px;
+                height: 22px;
+            }
+            .burger-bar {
+                width: 100%;
+                height: 2px;
+                background-color: #02040F;
+                transition: all 0.3s ease;
+            }
+            /* ANIMAZIONE BURGER APERTO */
+            .burger-menu.open .bar1 {
+                transform: translateY(10px) rotate(45deg);
+            }
+            .burger-menu.open .bar2 {
+                opacity: 0;
+            }
+            .burger-menu.open .bar3 {
+                transform: translateY(-10px) rotate(-45deg);
+            }
+            .nav-overlay {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(255, 255, 255, 0.98);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+                z-index: 999;
+            }
+            .nav-overlay.open {
+                right: 0;
+            }
+            .nav-links {
+                list-style: none;
+                text-align: center;
+            }
+            .nav-links li {
+                margin: 25px 0;
+            }
+            .nav-links a {
+                font-family: 'Cormorant', serif;
+                font-size: 2rem;
+                color: var(--text-dark);
+                text-decoration: none;
+                letter-spacing: 3px;
+                transition: color 0.3s;
+            }
+            .nav-links a:hover {
+                color: var(--gold);
+            }
+            /* SEZIONE HEADER */
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 80px;
+                text-align: center;
+                background: linear-gradient(to bottom, var(--white), var(--white));
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+    
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                margin-bottom: 10px;
+                letter-spacing: 4px;
             }
-        }
-        .card {
-            background-color: var(--white);
-            border: 1px solid var(--pink);
-            padding: 30px;
-            transition: box-shadow 0.3s;
-        }
-        .card:hover {
-            box-shadow: 0 10px 25px rgba(244, 220, 214, 0.4);
-        }
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--gold);
-        }
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-        }
-        .card-link {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-weight: 500;
-            border-bottom: 1px solid var(--gold);
-            padding-bottom: 2px;
-            transition: color 0.3s;
-        }
-
-        .card-link:hover {
-            color: var(--gold);
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: var(--pink);
-            padding: 40px 20px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
-
-/* CONTENITORE IMG */
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 35px; /* Spazio tra immagine e pulsante */
-  padding: 20px;
-}
-
-/* CONTAINER IMMAGINE */
-.image-container {
-    margin-top: 90px;
-  width: 100%;
-  max-width: 500px;
-  border-radius: 50px;
-  overflow: hidden; /* Fondamentale per tagliare gli angoli dell'immagine a 50px */
-  background-color: #ffffff;
-  box-shadow: 
-    0 4px 15px rgba(82, 0, 158, 0.075), 
-    0 25px 40px -10px rgba(82, 0, 158, 0.275);
-}
-.image-container img {
-  display: block; /* Rimuove lo spazio bianco sotto l'immagine */
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-/* BTN INVITO */
-.btn-cont {
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
-.modern-btn {
-  display: inline-block;
-  padding: 16px 38px;
-  background: linear-gradient(135deg, #9c22ff 0%, #5f00db 100%);
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  border-radius: 9999px; /* Forma a pillola moderna */
-  box-shadow: 0 10px 20px -5px rgba(82, 0, 158, 0.4);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-}
-.modern-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 25px -5px rgba(82, 0, 158, 0.4);
-  background: linear-gradient(135deg, #af4dff 0%, #6f00ff 100%);
-}
-.modern-btn:active {
-  transform: translateY(0);
-}
-.event-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.couple-names {
-  font-family: 'Cormorant', serif;
-  font-size: clamp(2.4rem, 5vw, 3.4rem); /* Si adatta automaticamente a mobile e desktop */
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 1px;
-  color: #111827;
-  line-height: 1.1;
-}
-.event-date {
-    font-family: 'Cormorant', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: #4b5563;
-  margin-top: 6px;
-}
-.event-location {
-    font-family: 'Cormorant', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 1.1rem;
-  letter-spacing: 1.5px;
-  color: #6b7280;
-}
-.info-card {
-  width: 100%;
-  max-width: 500px;
-  padding: 40px 35px;
-  border-radius: 50px;
-  background-color: #ffffff;
-  box-shadow: 
-    0 4px 15px rgba(82, 0, 158, 0.075), 
-    0 25px 40px -10px rgba(82, 0, 158, 0.175);
-  display: flex;
-align-items: center;
-  flex-direction: column;
-  
-  gap: 14px;
-}
-.card-title {
-  font-size: clamp(1.8rem, 5vw, 2.8rem); /* Si adatta automaticamente a mobile e desktop */
-  font-style: italic;
-  font-weight: 400;
-  color: #111827;
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
-  text-align: center;
-}
-.card-text {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-  font-weight: 400;
-  font-size: clamp(1.15rem, 3.8vw, 1.25rem);
-  line-height: 1.7;
-  color: #4b5563;
-}
-.card-text strong {
-  color: #1f2937;
-  font-weight: 600;
-}
-/* CARD TESTO PROGRAMMA */
-.program-item {
-  display: flex;
-align-items: center;
-  flex-direction: column;
-  gap: 6px;
-}
-.card-divider {
-  width: 60px;
-  border: none;
-  border-top: 1px solid #e5e7eb;
-  margin: 8px 0;
-}
-.inline-link {
-  color: #5f00db;
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: #8a31ff;
-  text-underline-offset: 3px;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
-}
-.inline-link:hover {
-  color: #8a31ff;
-  text-decoration-color: #8a31ff;
-}
-/* LANG BTN */
-.lang-btn {
-  position: fixed;
-  right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1000;
-  width: 52px;
-  height: 52px;
-  border: none;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #9c22ff 0%, #5f00db 100%);
-  color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  box-shadow: 0 10px 20px -5px rgba(82, 0, 158, 0.4);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-    opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-}
-/* LANG BTN VISIBILE */
-.lang-btn.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-.lang-btn:hover {
-  transform: translateY(calc(-50% - 3px));
-  box-shadow: 0 15px 25px -5px rgba(82, 0, 158, 0.55);
-  background: linear-gradient(135deg, #af4dff 0%, #6f00ff 100%);
-}
-.lang-btn:active {
-  transform: translateY(-50%);
-}
-/* RESPONSIVE */
-@media (max-width: 480px) {
-  .lang-btn {
-    right: 14px;
-    width: 46px;
-    height: 46px;
-    font-size: 12px;
-  }
-}
-.welcome-quote {
-  max-width: 500px;
-  margin-top: 24px;
-  padding: 0 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-}
-.quote-line {
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
-.welcome-text {
-  font-family: 'Cormorant', serif;
-  font-style: italic;
-  font-weight: 400;
-  /* Su smartphone scende a 1.35rem (circa 21px), su desktop arriva a 1.65rem */
-  font-size: clamp(1.55rem, 3.8vw, 1.85rem);
-  line-height: 1.55;
-  color: var(--text-dark);
-  text-align: center;
-  letter-spacing: 0.3px;
-}
-    </style>
-</head>
-<body>
-    <button id="lang-toggle" class="lang-btn" aria-label="Cambia lingua">EN</button>
-    <!-- NAVBAR -->
-    <header>
-        <a href="#" class="logo">Giulia & Roberto</a>
-        <div class="burger-menu" onclick="toggleMenu()">
-            <div class="burger-bar bar1"></div>
-            <div class="burger-bar bar2"></div>
-            <div class="burger-bar bar3"></div>
-        </div>
-    </header>
-    <!-- BURGER MENU -->
-    <nav class="nav-overlay" id="navOverlay">
-        <ul class="nav-links">
-            <li><a href="#programma" onclick="toggleMenu()">PROGRAMMA</a></li>
-            <li><a href="#dresscode" onclick="toggleMenu()">DRESS CODE</a></li>
-            <li><a href="#alloggi" onclick="toggleMenu()">CONSIGLI PER GLI ALLOGGI</a></li>
-            <li><a href="#reach" onclick="toggleMenu()">HOW TO REACH FABRIANO</a></li>
-        </ul>
-    </nav>
-    <div class="wrapper">
-        <div class="image-container">
-            <img src="GiuliaRobertoMod.jpeg" alt="Giulia & Roberto">
-        </div>
     
-    <div class="event-details">
-        <h1 class="couple-names">Giulia &amp; Roberto</h1>
-        <p class="event-date">Sabato 24 Luglio 2027</p>
-        <p class="event-location">Fabriano (AN) Italia</p>
-        <div class="btn-cont">
-            <a href="https://forms.gle/4Ch5yuqmGwitqdWW7" class="modern-btn">Rispondi all'invito</a>
+            .hero .date {
+                font-size: 1.1rem;
+                letter-spacing: 3px;
+                color: var(--text-muted);
+                margin-bottom: 40px;
+                text-transform: uppercase;
+            }
+            .btn-rsvp {
+                display: inline-block;
+                padding: 15px 40px;
+                background-color: var(--gold);
+                color: var(--white);
+                text-decoration: none;
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                font-weight: 500;
+                border-radius: 0;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            }
+            .btn-rsvp:hover {
+                background-color: var(--gold-hover);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            }
+            /* SEZIONE BURGER */
+            section {
+                padding: 100px 20px;
+                max-width: 900px;
+                margin: 0 auto;
+                border-bottom: 1px solid var(--pink);
+            }
+            section:last-of-type {
+                border-bottom: none;
+            }
+            .section-title {
+                text-align: center;
+                font-size: 2.5rem;
+                margin-bottom: 50px;
+                letter-spacing: 3px;
+                position: relative;
+            }
+            .section-title::after {
+                content: '';
+                display: block;
+                width: 50px;
+                height: 1px;
+                background-color: var(--gold);
+                margin: 15px auto 0 auto;
+            }
+            .card {
+                background-color: var(--white);
+                border: 1px solid var(--pink);
+                padding: 30px;
+                transition: box-shadow 0.3s;
+            }
+            .card:hover {
+                box-shadow: 0 10px 25px rgba(244, 220, 214, 0.4);
+            }
+            .card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: var(--gold);
+            }
+            .card p {
+                color: var(--text-muted);
+                font-size: 0.95rem;
+                margin-bottom: 15px;
+            }
+            .card-link {
+                color: var(--text-dark);
+                text-decoration: none;
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                font-weight: 500;
+                border-bottom: 1px solid var(--gold);
+                padding-bottom: 2px;
+                transition: color 0.3s;
+            }
+            .card-link:hover {
+                color: var(--gold);
+            }
+            /* FOOTER */
+            footer {
+                background-color: var(--pink);
+                padding: 40px 20px;
+                text-align: center;
+                font-size: 0.9rem;
+                color: var(--text-muted);
+                letter-spacing: 1px;
+            }
+            /* CONTENITORE IMG */
+            .wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 35px; /* Spazio tra immagine e pulsante */
+                padding: 20px;
+            }
+            /* CONTAINER IMMAGINE */
+            .image-container {
+                margin-top: 90px;
+                width: 100%;
+                max-width: 500px;
+                border-radius: 50px;
+                overflow: hidden; /* Fondamentale per tagliare gli angoli dell'immagine a 50px */
+                background-color: #ffffff;
+                box-shadow: 
+                    0 4px 15px rgba(82, 0, 158, 0.075), 
+                    0 25px 40px -10px rgba(82, 0, 158, 0.275);
+            }
+            .image-container img {
+                display: block; /* Rimuove lo spazio bianco sotto l'immagine */
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+            /* BTN INVITO */
+            .btn-cont {
+                margin-top: 30px;
+                margin-bottom: 20px;
+            }
+            .modern-btn {
+                display: inline-block;
+                padding: 16px 38px;
+                background: linear-gradient(135deg, #9c22ff 0%, #5f00db 100%);
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                border-radius: 9999px; /* Forma a pillola moderna */
+                box-shadow: 0 10px 20px -5px rgba(82, 0, 158, 0.4);
+                transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            }
+            .modern-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 25px -5px rgba(82, 0, 158, 0.4);
+                background: linear-gradient(135deg, #af4dff 0%, #6f00ff 100%);
+            }
+            .modern-btn:active {
+                transform: translateY(0);
+            }
+            .event-details {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            .couple-names {
+                font-family: 'Cormorant', serif;
+                font-size: clamp(2.4rem, 5vw, 3.4rem); /* Si adatta automaticamente a mobile e desktop */
+                font-style: italic;
+                font-weight: 400;
+                letter-spacing: 1px;
+                color: #111827;
+                line-height: 1.1;
+            }
+            .event-date {
+                font-family: 'Cormorant', serif;
+                font-style: italic;
+                font-weight: 400;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                color: #4b5563;
+                margin-top: 6px;
+            }
+            .event-location {
+                font-family: 'Cormorant', serif;
+                font-style: italic;
+                font-weight: 400;
+                font-size: 1.1rem;
+                letter-spacing: 1.5px;
+                color: #6b7280;
+            }
+            .info-card {
+                width: 100%;
+                max-width: 500px;
+                padding: 40px 35px;
+                border-radius: 50px;
+                background-color: #ffffff;
+                box-shadow: 
+                    0 4px 15px rgba(82, 0, 158, 0.075), 
+                    0 25px 40px -10px rgba(82, 0, 158, 0.175);
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 14px;
+            }
+            .card-title {
+                font-size: clamp(1.8rem, 5vw, 2.8rem); /* Si adatta automaticamente a mobile e desktop */
+                font-style: italic;
+                font-weight: 400;
+                color: #111827;
+                letter-spacing: 0.5px;
+                margin-bottom: 4px;
+                text-align: center;
+            }
+            .card-text {
+                font-family: 'Cormorant', serif;
+                font-style: italic;
+                font-weight: 400;
+                font-size: clamp(1.15rem, 3.8vw, 1.25rem);
+                line-height: 1.7;
+                color: #4b5563;
+            }
+            .card-text strong {
+                color: #1f2937;
+                font-weight: 600;
+            }
+            /* CARD TESTO PROGRAMMA */
+            .program-item {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 6px;
+            }
+            .card-divider {
+                width: 60px;
+                border: none;
+                border-top: 1px solid #e5e7eb;
+                margin: 8px 0;
+            }
+            .inline-link {
+                color: #5f00db;
+                font-weight: 600;
+                text-decoration: underline;
+                text-decoration-color: #8a31ff;
+                text-underline-offset: 3px;
+                transition: color 0.2s ease, text-decoration-color 0.2s ease;
+            }
+            .inline-link:hover {
+                color: #8a31ff;
+                text-decoration-color: #8a31ff;
+            }
+            /* LANG BTN */
+            .lang-btn {
+                position: fixed;
+                right: 24px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1000;
+                width: 52px;
+                height: 52px;
+                border: none;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #9c22ff 0%, #5f00db 100%);
+                color: #ffffff;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                cursor: pointer;
+                box-shadow: 0 10px 20px -5px rgba(82, 0, 158, 0.4);
+                transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            }
+            /* LANG BTN VISIBILE */
+            .lang-btn.visible {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+            .lang-btn:hover {
+                transform: translateY(calc(-50% - 3px));
+                box-shadow: 0 15px 25px -5px rgba(82, 0, 158, 0.55);
+                background: linear-gradient(135deg, #af4dff 0%, #6f00ff 100%);
+            }
+            .lang-btn:active {
+                transform: translateY(-50%);
+            }
+            /* RESPONSIVE */
+            @media (max-width: 480px) {
+                .lang-btn {
+                    right: 14px;
+                    width: 46px;
+                    height: 46px;
+                    font-size: 12px;
+                }
+            }
+            .welcome-quote {
+                max-width: 500px;
+                margin-top: 24px;
+                padding: 0 15px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 18px;
+            }
+            .quote-line {
+                width: 60px;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            }
+            .welcome-text {
+                font-family: 'Cormorant', serif;
+                font-style: italic;
+                font-weight: 400;
+                /* Su smartphone scende a 1.55rem (circa 18px), su desktop arriva a 1.85rem */
+                font-size: clamp(1.55rem, 3.8vw, 1.85rem);
+                line-height: 1.55;
+                color: var(--text-dark);
+                text-align: center;
+                letter-spacing: 0.3px;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="lang-toggle" class="lang-btn" aria-label="Cambia lingua">EN</button>
+        <!-- NAVBAR -->
+        <header>
+            <a href="#" class="logo">Giulia & Roberto</a>
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div class="burger-bar bar1"></div>
+                <div class="burger-bar bar2"></div>
+                <div class="burger-bar bar3"></div>
+            </div>
+        </header>
+        <!-- BURGER MENU -->
+        <nav class="nav-overlay" id="navOverlay">
+            <ul class="nav-links">
+                <li><a href="#programma" onclick="toggleMenu()">PROGRAMMA</a></li>
+                <li><a href="#dresscode" onclick="toggleMenu()">DRESS CODE</a></li>
+                <li><a href="#alloggi" onclick="toggleMenu()">CONSIGLI PER GLI ALLOGGI</a></li>
+                <li><a href="#reach" onclick="toggleMenu()">HOW TO REACH FABRIANO</a></li>
+            </ul>
+        </nav>
+        <!-- BODY -->
+        <div class="wrapper">
+            <div class="image-container">
+                <img src="GiuliaRobertoMod.jpeg" alt="Giulia & Roberto">
+            </div>
+            <div class="event-details">
+                <h1 class="couple-names">Giulia &amp; Roberto</h1>
+                <p class="event-date">Sabato 24 Luglio 2027</p>
+                <p class="event-location">Fabriano (AN) Italia</p>
+                <div class="btn-cont">
+                    <a href="https://forms.gle/4Ch5yuqmGwitqdWW7" class="modern-btn">Rispondi all'invito</a>
+                </div>
+        
+                <div class="welcome-quote">
+                    <p class="welcome-text"
+                        data-it="Cari familiari e amici, è con gioia che vi invitiamo a festeggiare con noi il nostro Amore.<br>Non vediamo l'ora di avervi tutti con noi in un momento così speciale della nostra vita." 
+                        data-en="Dear family and friends, it is with great joy that we invite you to celebrate our Love with us.<br>We can't wait to have you all by our side during such a special moment in our lives.">
+                        Cari familiari e amici, è con gioia che vi invitiamo a festeggiare con noi il nostro Amore.<br>Non vediamo l'ora di avervi tutti con noi in un momento così speciale della nostra vita.
+                    </p>
+                </div>
+            </div>
+            <!-- CARD 1: PROGRAMMA -->
+            <div class="info-card" id="programma">
+                <h2 class="card-title" data-it="Programma" data-en="Schedule">Programma</h2>
+                <div class="program-item">
+                    <p class="card-text" data-it="<strong>Celebrazione presso:</strong> prossimamente..." data-en="<strong>Ceremony at:</strong> prossimamente..."><strong>Celebrazione presso:</strong> prossimamente...</p>
+                    <p class="card-text" data-it="<strong>Ore:</strong> soon..." data-en="<strong>Time:</strong> soon..."><strong>Ore:</strong> prossimamente...</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d362.6498579507986!2d12.865384228028592!3d43.35195071091097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dcbec20d5c8ad%3A0x80c077995e5fcf47!2sTorrececchina!5e0!3m2!1sen!2sit!4v1795480263783!5m2!1sen!2sit" width="300" height="200" style="border:0;border-radius: 30px 30px 30px 30px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <div class="program-item">
+                    <p class="card-text" data-it="<strong>Festeggiamenti presso:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7" data-en="<strong>Celebrations at:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7"><strong>Festeggiamenti presso:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d362.6498579507986!2d12.865384228028592!3d43.35195071091097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dcbec20d5c8ad%3A0x80c077995e5fcf47!2sTorrececchina!5e0!3m2!1sen!2sit!4v1795480263783!5m2!1sen!2sit" width="300" height="200" style="border:0;border-radius: 30px 30px 30px 30px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+            <!-- CARD 2: DRESS CODE -->
+            <div class="info-card" id="dresscode">
+                <h2 class="card-title">Dress Code</h2>
+                <p class="card-text" 
+                    data-it="Al di là del caldo torrido previsto, vi preghiamo di venire vestiti come più vi aggradi. Siate voi stessi e venite a divertirvi con noi!" 
+                    data-en="Regardless of the expected summer heat, please wear whatever makes you feel most comfortable. Just be yourself and come have fun with us!">
+                    Al di là del caldo torrido previsto, vi preghiamo di venire vestiti come più vi aggradi. Siate voi stessi e venite a divertirvi con noi!
+                </p>
+            </div>
+             <!-- CARD 3: ALLOGGI -->
+            <div class="info-card" id="alloggi">
+                <h2 class="card-title" data-it="Alloggi" data-en="Accomodation">Alloggi</h2>
+                <p class="card-text"
+                    data-it="Prossimamente..."
+                    data-en="Soon...">
+                    Prossimamente...
+                </p>
+            </div>
+            <!-- CARD 4: COME RAGGIUNGERE FABRIANO -->
+            <div class="info-card" id="reach">
+                <h2 class="card-title" data-it="Come raggiungere Fabriano" data-en="How to Reach Fabriano">Come raggiungere Fabriano</h2>
+                <p class="card-text" 
+                    data-it="L'aeroporto internazionale più vicino è <strong>Roma Fiumicino</strong>. Da qui è consigliabile noleggiare un'auto, poiché Fabriano non dispone di mezzi pubblici per spostarsi." 
+                    data-en="The closest international airport is <strong>Roma Fiumicino</strong>. From here, you can hire a car, which is recommended as Fabriano doesn't offer public transport to move around.">
+                    L'aeroporto internazionale più vicino è <strong>Roma Fiumicino</strong>. Da qui è consigliabile noleggiare un'auto, poiché Fabriano non dispone di mezzi pubblici per spostarsi.
+                </p>
+                <p class="card-text" 
+                    data-it="In alternativa, potete prendere il treno da <strong>Roma Termini</strong> a Fabriano (treno diretto, circa 2,5/3 ore) e verremo a prendervi noi (<a href='https://www.trenitalia.com' target='_blank' class='inline-link'>sito Trenitalia</a>)." 
+                    data-en="Otherwise, you can take the train from <strong>Roma Termini</strong> to Fabriano (direct train, around 2.5/3 hours) and we'll pick you up (<a href='https://www.trenitalia.com' target='_blank' class='inline-link'>Trenitalia website</a>).">
+                    In alternativa, potete prendere il treno da <strong>Roma Termini</strong> a Fabriano (treno diretto, circa 2,5/3 ore) e verremo a prendervi noi (<a href="https://www.trenitalia.com" target="_blank" class="inline-link">sito Trenitalia</a>).
+                </p>
+                <p class="card-text" 
+                    data-it="Una volta agli arrivi, prendete il treno <strong>Leonardo Express</strong> dall'aeroporto fino a Roma Termini. Da lì seguite le indicazioni per il vostro treno." 
+                    data-en="Once at the arrivals, take the <strong>Leonardo Express</strong> train from the airport and stop at Roma Termini. From here, follow the directions to your train.">
+                    Una volta agli arrivi, prendete il treno <strong>Leonardo Express</strong> dall'aeroporto fino a Roma Termini. Da lì seguite le indicazioni per il vostro treno.
+                </p>
+            </div>
         </div>
-
-        <div class="welcome-quote">
-            <p class="welcome-text"
-                data-it="Cari familiari e amici, è con gioia che vi invitiamo a festeggiare con noi il nostro Amore.<br>Non vediamo l'ora di avervi tutti con noi in un momento così speciale della nostra vita." 
-                data-en="Dear family and friends, it is with great joy that we invite you to celebrate our Love with us.<br>We can't wait to have you all by our side during such a special moment in our lives.">
-                Cari familiari e amici, è con gioia che vi invitiamo a festeggiare con noi il nostro Amore.<br>Non vediamo l'ora di avervi tutti con noi in un momento così speciale della nostra vita.
-            </p>
-        </div>
-    </div>
-
-    <!-- CARD 1: PROGRAMMA -->
-    <div class="info-card" id="programma">
-        <h2 class="card-title" data-it="Programma" data-en="Schedule">Programma</h2>
-        <div class="program-item">
-            <p class="card-text" data-it="<strong>Celebrazione presso:</strong> prossimamente..." data-en="<strong>Ceremony at:</strong> prossimamente..."><strong>Celebrazione presso:</strong> prossimamente...</p>
-            <p class="card-text" data-it="<strong>Ore:</strong> soon..." data-en="<strong>Time:</strong> soon..."><strong>Ore:</strong> prossimamente...</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d362.6498579507986!2d12.865384228028592!3d43.35195071091097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dcbec20d5c8ad%3A0x80c077995e5fcf47!2sTorrececchina!5e0!3m2!1sen!2sit!4v1795480263783!5m2!1sen!2sit" width="300" height="200" style="border:0;border-radius: 30px 30px 30px 30px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-        <div class="program-item">
-            <p class="card-text" data-it="<strong>Festeggiamenti presso:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7" data-en="<strong>Celebrations at:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7"><strong>Festeggiamenti presso:</strong><br>Dimora Paleco-Bucossi, Torrececchina 127/7</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d362.6498579507986!2d12.865384228028592!3d43.35195071091097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132dcbec20d5c8ad%3A0x80c077995e5fcf47!2sTorrececchina!5e0!3m2!1sen!2sit!4v1795480263783!5m2!1sen!2sit" width="300" height="200" style="border:0;border-radius: 30px 30px 30px 30px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-    </div>
-
-    <!-- CARD 2: DRESS CODE -->
-    <div class="info-card" id="dresscode">
-        <h2 class="card-title">Dress Code</h2>
-        <p class="card-text" 
-            data-it="Al di là del caldo torrido previsto, vi preghiamo di venire vestiti come più vi aggradi. Siate voi stessi e venite a divertirvi con noi!" 
-            data-en="Regardless of the expected summer heat, please wear whatever makes you feel most comfortable. Just be yourself and come have fun with us!">
-            Al di là del caldo torrido previsto, vi preghiamo di venire vestiti come più vi aggradi. Siate voi stessi e venite a divertirvi con noi!
-        </p>
-    </div>
-
-     <!-- CARD 3: ALLOGGI -->
-    <div class="info-card" id="alloggi">
-        <h2 class="card-title" data-it="Alloggi" data-en="Accomodation">Alloggi</h2>
-        <p class="card-text"
-            data-it="Prossimamente..."
-            data-en="Soon...">
-            Prossimamente...
-        </p>
-    </div>
-
-    <!-- CARD 4: COME RAGGIUNGERE FABRIANO -->
-    <div class="info-card" id="reach">
-        <h2 class="card-title" data-it="Come raggiungere Fabriano" data-en="How to Reach Fabriano">Come raggiungere Fabriano</h2>
-        <p class="card-text" 
-            data-it="L'aeroporto internazionale più vicino è <strong>Roma Fiumicino</strong>. Da qui è consigliabile noleggiare un'auto, poiché Fabriano non dispone di mezzi pubblici per spostarsi." 
-            data-en="The closest international airport is <strong>Roma Fiumicino</strong>. From here, you can hire a car, which is recommended as Fabriano doesn't offer public transport to move around.">
-            L'aeroporto internazionale più vicino è <strong>Roma Fiumicino</strong>. Da qui è consigliabile noleggiare un'auto, poiché Fabriano non dispone di mezzi pubblici per spostarsi.
-        </p>
-        <p class="card-text" 
-            data-it="In alternativa, potete prendere il treno da <strong>Roma Termini</strong> a Fabriano (treno diretto, circa 2,5/3 ore) e verremo a prendervi noi (<a href='https://www.trenitalia.com' target='_blank' class='inline-link'>sito Trenitalia</a>)." 
-            data-en="Otherwise, you can take the train from <strong>Roma Termini</strong> to Fabriano (direct train, around 2.5/3 hours) and we'll pick you up (<a href='https://www.trenitalia.com' target='_blank' class='inline-link'>Trenitalia website</a>).">
-            In alternativa, potete prendere il treno da <strong>Roma Termini</strong> a Fabriano (treno diretto, circa 2,5/3 ore) e verremo a prendervi noi (<a href="https://www.trenitalia.com" target="_blank" class="inline-link">sito Trenitalia</a>).
-        </p>
-        <p class="card-text" 
-            data-it="Una volta agli arrivi, prendete il treno <strong>Leonardo Express</strong> dall'aeroporto fino a Roma Termini. Da lì seguite le indicazioni per il vostro treno." 
-            data-en="Once at the arrivals, take the <strong>Leonardo Express</strong> train from the airport and stop at Roma Termini. From here, follow the directions to your train.">
-            Una volta agli arrivi, prendete il treno <strong>Leonardo Express</strong> dall'aeroporto fino a Roma Termini. Da lì seguite le indicazioni per il vostro treno.
-        </p>
-    </div>
-    </div>
-<script>
-const langToggle = document.getElementById('lang-toggle');
-  // Seleziona il blocco dell'invito (funziona sia se hai usato .welcome-quote sia con il vecchio .card-text)
-  const welcomeSection = document.querySelector('.welcome-quote') || document.querySelector('.event-details .card-text');
-  let currentLang = 'it';
-
-    window.addEventListener('scroll', () => {
-    if (!welcomeSection) return;
-    const triggerPoint = welcomeSection.getBoundingClientRect().top;
+        <script>
+            const langToggle = document.getElementById('lang-toggle');
+            const welcomeSection = document.querySelector('.welcome-quote') || document.querySelector('.event-details .card-text');
+            let currentLang = 'it';
+        
+            window.addEventListener('scroll', () => {
+                if (!welcomeSection) return;
+                const triggerPoint = welcomeSection.getBoundingClientRect().top;
+            
+                if (triggerPoint <= window.innerHeight * 0.85) {
+                  langToggle.classList.add('visible');
+                }
+                else {
+                    langToggle.classList.remove('visible');
+                }
+            });
     
-    if (triggerPoint <= window.innerHeight * 0.85) {
-      langToggle.classList.add('visible');
-    } else {
-      langToggle.classList.remove('visible');
-    }
-  });
-
-    langToggle.addEventListener('click', () => {
-      // Alterna tra 'it' ed 'en'
-      currentLang = currentLang === 'it' ? 'en' : 'it';
-      
-      // Aggiorna l'attributo lang della pagina
-      document.documentElement.lang = currentLang;
-
-      // Aggiorna il testo del pulsante (mostra la lingua verso cui tradurre)
-      langToggle.textContent = currentLang === 'it' ? 'EN' : 'IT';
-
-      // Sostituisce il contenuto di tutti gli elementi con data-it e data-en
-      document.querySelectorAll('[data-it]').forEach(el => {
-        el.innerHTML = el.getAttribute(`data-${currentLang}`);
-      });
-    });
-
-    function toggleMenu() {
-const burger = document.querySelector('.burger-menu');
-const overlay = document.getElementById('navOverlay');
-burger.classList.toggle('open');
-overlay.classList.toggle('open');
-}
-</script>
-       
-</body>
+            langToggle.addEventListener('click', () => {
+                currentLang = currentLang === 'it' ? 'en' : 'it';
+                document.documentElement.lang = currentLang;
+                langToggle.textContent = currentLang === 'it' ? 'EN' : 'IT';
+                document.querySelectorAll('[data-it]').forEach(el => {
+                    el.innerHTML = el.getAttribute(`data-${currentLang}`);
+                });
+            });
+        
+            function toggleMenu() {
+                const burger = document.querySelector('.burger-menu');
+                const overlay = document.getElementById('navOverlay');
+                burger.classList.toggle('open');
+                overlay.classList.toggle('open');
+            }
+        </script>
+    </body>
 </html>
